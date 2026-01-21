@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/output.css">
+    <title>Sistema de Calculos - Chapa</title>
+</head>
+
+<body class="bg-gray-200">
+
+    <div id="header"></div>
+
+
+    <main class="grid grid-cols-3 w-10/12 m-auto p-5 gap-5">
+
+        <section class="">
+            <div class="rounded shadow-xl p-3 bg-white">
+                <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Material</h2>
+
+                <div class="mt-5">
+                    <div class="grid grid-cols-4 items-center mb-2">
+                        <label class="text-md font-medium ">Material</label>
+                        <select id="tipoMaterial" class="col-span-3 w-full p-2 border border-gray-400 rounded-md">
+                            <option value="acrilico">Acrilico</option>
+                            <option value="pvc">PVC</option>
+                            <option value="abs">ABS - Trotek</option>
+                            <option value="espelhado">Espelhado</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-4 items-center mb-2 acrilicoItem">
+                        <label class="text-md font-medium">Cor</label>
+                        <select id="corChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md">
+                            <option value="cristal">Cristal</option>
+                            <option value="colorido">Colorido</option>
+                        </select>
+                    </div>
+
+
+                    <div class="grid grid-cols-4 items-center mb-2 acrilicoItem">
+                        <label class="text-md font-medium">Espessura</label>
+                        <select id="espessuraChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md">
+                            <option value="2">2mm</option>
+                            <option value="3">3mm</option>
+                            <option value="4">4mm</option>
+                            <option value="5">5mm</option>
+                            <option value="6">6mm</option>
+                            <option value="8">8mm</option>
+                            <option value="10">10mm</option>
+                            <option value="12">12mm</option>
+                            <option value="15">15mm</option>
+                            <option value="20">20mm</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded shadow-xl p-3 mt-5 bg-white">
+                <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Medidas</h2>
+
+                <div class="mt-5 mb-2 grid grid-cols-4 items-center">
+                    <label for="valX" class="text-md font-medium">X (cm)</label>
+                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
+                        placeholder="50">
+                </div>
+
+                <div class="mb-2 grid grid-cols-4 items-center">
+                    <label for="valY" class="text-md font-medium">Y (cm)</label>
+                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
+                        placeholder="50">
+                </div>
+
+            </div>
+
+            <div class="mt-5 rounded shadow-xl p-5 bg-white">
+                <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Personalização</h2>
+
+                <div class="mt-5 grid grid-cols-4 items-center">
+                    <label class="text-md font-medium">Tipo</label>
+                    <select id="tipoPers"
+                        class="col-span-3 w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="branco">Adesivo Branco</option>
+                        <option value="impresso">Adesivo Impreso</option>
+                        <option selected value="espelhado">Adesivo Espelhado</option>
+                        <option value="fiber">Fiber</option>
+                        <option value="uv">UV (Alta definição)</option>
+                    </select>
+
+                </div>
+
+                <div class="grid grid-cols-4 items-center mt-5">
+                    <label for="valXPers" class="text-md font-medium">X (cm)</label>
+                    <input id="valXPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center"
+                        type="number" placeholder="50">
+                </div>
+
+                <div class="grid grid-cols-4 items-center mt-2">
+                    <label for="valYPers" class="text-md font-medium">Y (cm)</label>
+                    <input id="valYPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center"
+                        type="number" placeholder="50">
+                </div>
+
+                <p id="areaPers"></p>
+            </div>
+
+
+
+
+        </section>
+
+        <section class="col-span-2">
+            <div class="rounded shadow-xl p-5 bg-white">
+
+                <div class="grid grid-cols-9 text-center">
+                    <div class="col-span-3 col-start-2 p-2 border border-gray-300 rounded">
+                        <h3 class="text-xl font-bold text-gray-700">Chapa</h3>
+                        <p class="text-2xl">R$ <span id="valorvenda"
+                                class="text-green-700 text-2xl font-bold">00,00</span></p>
+                    </div>
+
+                    <div class="col-span-3 col-start-6 p-2 border border-gray-300 rounded">
+                        <h3 class="text-xl font-bold text-gray-700">Personalização</h3>
+                        <p class="text-2xl">R$ <span id="valorVendaPers"
+                                class="text-green-700 text-2xl font-bold">00,00</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center p-3 mt-5 bg-white">
+                    <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Ajustes</h2>
+                    <div class="w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
+                        <label for="porcentagem" class="col-start-2 text-md font-medium">Percentual (%)</label>
+                        <input id="porcentagem" class="col-span-2 border border-gray-400 p-1 rounded-md text-center"
+                            type="number" value="65">
+                    </div>
+                </div>
+
+                <h2 class="text-center mt-5 text-2xl font-bold p-2 border-b border-gray-300 text-gray-600">Orçamento Final</h2>
+
+
+                <div class="my-16 p-2 border-b border-gray-300 text-center">
+                    <p class="text-6xl"><span class="text-green-600 font-semibold">R$<span
+                                id="valorFinal">00,00</span></span> </p>
+                    <div class="text-center text-xl p-5 text-gray-600 font-medium">
+                        <p>Area: <span id="metroquadrado">0,0000</span> M² | Tempo: <span id="tempoCorte">0</span> min
+                        </p>
+                    </div>
+
+                    <button id="copiarOrcamento" class="btn-copiar border px-16 py-3 bg-green-600 text-2xl text-white font-semibold rounded-md
+                hover:bg-green-500 hover:cursor-pointer" data-texto="R$00,00">Copiar Orçamento</button>
+
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <div id="textCopia"></div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

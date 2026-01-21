@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/output.css">
+    <title>Sistema de Calculos - Caixa</title>
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <main class="grid grid-cols-3 bg-gray-200">
+        <section>
+
+            <h2 class="text-2xl text-center p-5">Aréa de Copia</h2>
+
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Pedir dados para cadastro</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+Por gentileza enviar CNPJ para cadastro e emissão do pedido, ou os dados abaixo. 
+
+Nome Completo:
+CPF:
+Endereço:
+CEP:
+                        ">Copiar</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Chave PIX:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+Chave PIX:
+23.650.001/0001-87
+                        ">Copiar</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Localização:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+Localização:
+https://maps.app.goo.gl/ZssR5mjt2B3f9PULA
+
+Rua C-162 nº 124 Qd. 252 Lt. 18 - Setor Jardim América - Goiânia - GO - CEP. 74.255-110
+                        ">Copiar</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Horario de funcionamento:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+Estamos abertos de segunda à sexta-feira
+das 08:00 às 18:00 horas
+
+Obs:
+Fechamos para almoço das 12:00 as 13:30.
+                        ">Copiar</button>
+                </div>
+            </div>
+
+
+
+
+            <div class="my-16  flex justify-between p-2">
+                <p class="text-xl">Orçamento: <span class="text-green-600 font-semibold">R$<span
+                            id="valorFinal">00,00</span></span> </p>
+                <div>
+                    <button id="copiarOrcamento" class="btn-copiar border px-5 py-1 bg-green-600 text-white font-semibold rounded-md
+                hover:bg-green-500 hover:cursor-pointer" data-texto="R$00,00">Copiar</button>
+                </div>
+            </div>
+
+
+
+
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Nota Fiscal:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+*NOTA FISCAL* 
+NOME: 
+CNPJ: 
+Nº DO PEDIDO: 
+MATERIAL: 
+VALOR: R$ 
+ENVIAR: 
+                        ">Copiar</button>
+                </div>
+            </div>
+            
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Link de Pagamento:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+*LINK DE PAGAMENTO*
+NOME: 
+Nº DO PEDIDO: 
+VALOR: R$ 
+MATERIAL: 
+PARCELA: 1X
+ENVIAR: 
+                        ">Copiar</button>
+                </div>
+            </div>
+            
+            
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Libereção para Boleto:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+*LIBERAÇÃO PARA BOLETO * 
+NOME: 
+CNPJ: 
+MATERIAL: 
+VALOR: R$ 
+                        ">Copiar</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Nota Fiscal e Boleto:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+*NOTA FISCAL E BOLETO * 
+NOME: 
+CNPJ: 
+Nº DO PEDIDO: 
+MATERIAL: 
+VALOR: R$ 
+ENVIAR: 
+                        ">Copiar</button>
+                </div>
+            </div>
+            
+            <div class="flex justify-between p-2">
+                <p class="text-xl">Solicitação de Estorno:</p>
+                <div>
+                    <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded-md
+                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+*SOLICITAÇÃO DE ESTORNO*
+MOTIVO: 
+PEDIDO: 
+CONTATO: 
+VALOR: R$ 
+PIX: 
+                        ">Copiar</button>
+                </div>
+            </div>
+
+
+
+        </section>
+
+        <section class=" col-span-2 w-10/12 rounded-xl shadow-xl m-auto p-3 bg-white">
+            <article class="rounded-xl shadow-md p-4">
+                <h1 class="text-3xl text-center mt-5 mb-5 font-bold">Calculo de Caixa</h1>
+
+                <div class="">
+                    <label class="block mb-2 text-sm font-medium">Escolha uma cor</label>
+                    <select id="corChapa"
+                        class="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="cristal">Cristal</option>
+                        <option value="colorido">Colorido</option>
+                    </select>
+
+                    <label class="block mb-2 text-sm font-medium">Escolha uma espessura</label>
+                    <select id="espessuraChapa"
+                        class="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="2">2mm</option>
+                        <option value="3">3mm</option>
+                        <option value="4">4mm</option>
+                        <option value="5">5mm</option>
+                        <option value="6">6mm</option>
+                        <option value="8">8mm</option>
+                        <option value="10">10mm</option>
+                        <option value="12">12mm</option>
+                        <option value="15">15mm</option>
+                        <option value="20">20mm</option>
+                    </select>
+                </div>
+
+                <div class="bg-center mt-5">
+                    <label for="valX">Valor de X:</label>
+                    <input id="valX" class="border border-gray-400 p-1 rounded-md text-center" type="number"
+                        placeholder="50"> <span>cm</span>
+                </div>
+
+                <div class="bg-center mt-2">
+                    <label for="valY">Valor de Y:</label>
+                    <input id="valY" class=" border border-gray-400 p-1 rounded-md text-center" type="number"
+                        placeholder="50"> <span>cm</span>
+                    <br>
+                </div>
+
+                <div class="bg-center mt-2">
+                    <label for="valZ">Valor de Z:</label>
+                    <input id="valZ" class=" border border-gray-400 p-1 rounded-md text-center" type="number"
+                        placeholder="50"> <span>cm</span>
+                </div>
+
+
+
+                <div class="bg-center mt-5 text-center">
+                    <label class="mt-5" for="porcentagem">Porcentagem:</label>
+                    <input id="porcentagem" class=" border border-gray-400 p-1 rounded-md text-center" type="number"
+                        value="65"> <span>%</span>
+                </div>
+
+                <div class="text-center border border-gray-400 rounded-xl mt-5 p-3">
+                    <p>Area: <span id="metroquadrado" class="text-xl font-bold">0,0000</span> M²</p>
+                    <p>Tempo de Corte: <span id="tempoCorte" class="text-xl font-bold">0</span> minutos</p>
+                    <p class="text-2xl">R$ <span id="valorvenda" class="text-green-700 text-2xl font-bold">00,00</span>
+                    </p>
+                </div>
+            </article>
+
+            <article class="rounded-xl shadow-md p-4">
+                <h1 class="text-3xl text-center mt-5 mb-5 font-bold">Calculo de Personalização</h1>
+
+                <div class="">
+                    <label class="block mb-2 text-sm font-medium">Escolha um tipo</label>
+                    <select id="tipoPers"
+                        class="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="branco">Adesivo Branco</option>
+                        <option value="impresso">Adesivo Impreso</option>
+                        <option selected value="espelhado">Adesivo Espelhado</option>
+                        <option value="fiber">Fiber</option>
+                        <option value="uv">UV (Alta definição)</option>
+                    </select>
+
+
+                </div>
+
+                <div class="bg-center mt-5">
+                    <label for="valXPers">Valor de X:</label>
+                    <input id="valXPers" class="border border-gray-400 p-1 rounded-md text-center" type="number"
+                        placeholder="50"> <span>cm</span>
+                </div>
+
+                <div class="bg-center mt-2">
+                    <label for="valYPers">Valor de Y:</label>
+                    <input id="valYPers" class=" border border-gray-400 p-1 rounded-md text-center" type="number"
+                        placeholder="50"> <span>cm</span>
+                </div>
+
+                <div class="bg-center mt-2 text-center">
+                    <label class="mt-5" for="porcentagemPers">Porcentagem:</label>
+                    <input id="porcentagemPers" class=" border border-gray-400 p-1 rounded-md text-center" type="number"
+                        value="0"> <span>%</span>
+                </div>
+
+                <div class="text-center border border-gray-400 rounded-xl mt-5 p-3">
+                    <p>Area: <span id="areaPers" class="text-xl font-bold">0,0000</span> M²</p>
+                    <p class="text-2xl">R$ <span id="valorVendaPers"
+                            class="text-green-700 text-2xl font-bold">00,00</span></p>
+                </div>
+            </article>
+        </section>
+    </main>
+    
+    <script type="module" src="js/caixa.js"></script>
+</body>
+
+</html>
