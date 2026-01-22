@@ -3,6 +3,12 @@ import { Header } from "./components/header.js"
 const headerContainer = document.querySelector('#header');
 headerContainer.innerHTML = Header();
 
+import { TextCopia } from "./components/textCopia.js"
+
+const textCopiaContainer = document.querySelector('#textCopia');
+textCopiaContainer.innerHTML = TextCopia();
+
+
 let valorChapa = 0
 let valorPers = 0
 
@@ -27,7 +33,6 @@ const copiarOrcamento = window.document.getElementById("copiarOrcamento")
 const tipoPersInput = window.document.getElementById("tipoPers")
 const valXPersInput = window.document.getElementById("valXPers")
 const valYPersInput = window.document.getElementById("valYPers")
-const porcentagemPersInput = window.document.getElementById("porcentagemPers")
 
 const areaPersText = window.document.getElementById("areaPers")
 const valorVendaPersText = window.document.getElementById("valorVendaPers")
@@ -66,9 +71,6 @@ valXPersInput.addEventListener("change", () => {
     calcular()
 });
 valYPersInput.addEventListener("change", () => {
-    calcular()
-});
-porcentagemPersInput.addEventListener("change", () => {
     calcular()
 });
 
@@ -162,15 +164,23 @@ function calcular() {
 
     let tempCorte = perimetro / speed
 
+    let porcentagem = Number(porcentagemInput.value) / 100 + 1
 
     let minutosCorte = Math.floor(tempCorte / 60)
 
     let segundosCorte = (tempCorte % 60 / 100)
 
-    let valorCorte = (minutosCorte + 1) * 3
+    let valorCorte 
+    
+     if (minutosCorte == 0 && segundosCorte > 0) {
+        valorCorte = 3
+    } else if (minutosCorte == 0 && segundosCorte == 0) {
+        valorCorte = 0
+    }
+    else {
+        valorCorte = (minutosCorte + 1) * 3
+    }
 
-
-    let porcentagem = Number(porcentagemInput.value) / 100 + 1
 
     let calcVenda = (metroquadrado * espessura * corPorcento + valorCorte) * porcentagem
 
@@ -192,7 +202,7 @@ function calcular() {
 
         case "impresso":
             valorAreaPers = 180;
-            personalizacao = "Adesivo Impreso"
+            personalizacao = "Adesivo Impresso"
             break;
 
         case "espelhado":
@@ -201,12 +211,12 @@ function calcular() {
             break;
 
         case "fiber":
-            valorAreaPers = 400;
+            valorAreaPers = 200;
             personalizacao = "Gravação na Fiber"
             break;
 
         case "uv":
-            valorAreaPers = 1000;
+            valorAreaPers = 800;
             personalizacao = "Impressão (UV Alta definição)"
             break;
 
@@ -220,9 +230,7 @@ function calcular() {
 
     let areaPers = valXPers * valYPers
 
-    let porcentagemPers = Number(porcentagemPersInput.value) / 100 + 1
-
-    let calcValorPers = (areaPers * valorAreaPers) * porcentagemPers
+    let calcValorPers = (areaPers * valorAreaPers) * porcentagem
 
     areaPersText.innerHTML = (areaPers).toFixed(4)
 
