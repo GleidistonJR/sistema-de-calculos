@@ -290,7 +290,31 @@ COPIAS
 document.querySelectorAll(".btn-copiar").forEach(botao => {
     botao.addEventListener("click", () => {
         const texto = botao.dataset.texto.trim();
-
-        navigator.clipboard.writeText(texto)
+        copiarTexto(texto);
     });
 });
+
+function copiarTexto(texto) {
+        const textArea = document.createElement("textarea");
+        textArea.value = texto;
+        
+        // Garante que o elemento não seja visível mas esteja no DOM
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        
+        textArea.focus();
+        textArea.select();
+
+        try {
+            const sucesso = document.execCommand('copy');
+            if (sucesso) {
+                console.log("Copiado (via fallback HTTP)!");
+            }
+        } catch (err) {
+            console.error("Falha Crítica ao copiar:", err);
+        }
+
+        document.body.removeChild(textArea);
+}
