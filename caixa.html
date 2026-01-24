@@ -23,7 +23,7 @@
 
                 <div class="mt-5 grid grid-cols-4 items-center mb-2 acrilicoItem">
                     <label class="text-md font-medium">Cor</label>
-                    <select id="corChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md">
+                    <select id="corChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md inputs">
                         <option value="cristal">Cristal</option>
                         <option value="colorido">Colorido</option>
                     </select>
@@ -31,7 +31,7 @@
 
                 <div class="grid grid-cols-4 items-center mb-2 acrilicoItem">
                     <label class="text-md font-medium">Espessura</label>
-                    <select id="espessuraChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md">
+                    <select id="espessuraChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md inputs">
                         <option value="2">2mm</option>
                         <option value="3">3mm</option>
                         <option value="4">4mm</option>
@@ -52,19 +52,19 @@
 
                 <div class="mt-5 mb-2 grid grid-cols-4 items-center">
                     <label for="valX" class="text-md font-medium">X (cm)</label>
-                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
+                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs" type="number"
                         placeholder="50">
                 </div>
 
                 <div class="mb-2 grid grid-cols-4 items-center">
                     <label for="valY" class="text-md font-medium">Y (cm)</label>
-                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
+                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs" type="number"
                         placeholder="50">
                 </div>
-                
+
                 <div class="mb-2 grid grid-cols-4 items-center">
                     <label for="valZ" class="text-md font-medium">Z (cm)</label>
-                    <input id="valZ" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
+                    <input id="valZ" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs" type="number"
                         placeholder="50">
                 </div>
 
@@ -76,7 +76,7 @@
                 <div class="mt-5 grid grid-cols-4 items-center">
                     <label class="text-md font-medium">Tipo</label>
                     <select id="tipoPers"
-                        class="col-span-3 w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="col-span-3 w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 inputs">
                         <option value="branco">Adesivo Branco</option>
                         <option value="impresso">Adesivo Impreso</option>
                         <option selected value="espelhado">Adesivo Espelhado</option>
@@ -88,13 +88,13 @@
 
                 <div class="grid grid-cols-4 items-center mt-5">
                     <label for="valXPers" class="text-md font-medium">X (cm)</label>
-                    <input id="valXPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center"
+                    <input id="valXPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
                         type="number" placeholder="50">
                 </div>
 
                 <div class="grid grid-cols-4 items-center mt-2">
                     <label for="valYPers" class="text-md font-medium">Y (cm)</label>
-                    <input id="valYPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center"
+                    <input id="valYPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
                         type="number" placeholder="50">
                 </div>
 
@@ -123,9 +123,27 @@
 
                 <div class="text-center p-3 mt-5 bg-white">
                     <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Ajustes</h2>
+                    <div class="mt-5 gap-5 flex justify-center text-xl text-gray-600 font-semibold ">
+                        <label>
+                            <input type="radio" class="inputs" name="tipoTampa" value="tampaLacrada">
+                            Tampa Lacrada
+                        </label>
+
+                        <label>
+                            <input type="radio" class="inputs" name="tipoTampa" value="tampa3cm" checked>
+                            Tampa 3cm
+                        </label>
+
+                        <label>
+                            <input type="radio" class="inputs" name="tipoTampa" value="tampaTotal">
+                            Tampa Total
+                        </label>
+
+                    </div>
                     <div class="w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
-                        <label for="porcentagem" class="col-start-2 text-md font-medium">Percentual (%)</label>
-                        <input id="porcentagem" class="col-span-2 border border-gray-400 p-1 rounded-md text-center"
+                        <label for="porcentagem" class="col-start-2 text-md font-medium text-gray-600">Percentual
+                            (%)</label>
+                        <input id="porcentagem" class="col-span-2 border border-gray-400 p-1 rounded-md text-center inputs"
                             type="number" value="65">
                     </div>
                 </div>

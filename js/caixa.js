@@ -20,6 +20,8 @@ const espessuraInput = window.document.getElementById("espessuraChapa")
 const valX = window.document.getElementById("valX")
 const valY = window.document.getElementById("valY")
 const valZ = window.document.getElementById("valZ")
+
+
 const porcentagemInput = window.document.getElementById("porcentagem")
 
 const metroQuadradoText = window.document.getElementById("metroquadrado")
@@ -38,44 +40,17 @@ const areaPersText = window.document.getElementById("areaPers")
 const valorVendaPersText = window.document.getElementById("valorVendaPers")
 
 
-corInput.addEventListener("change", () => {
-    calcular()
-});
-
-espessuraInput.addEventListener("change", () => {
-    calcular()
-});
-
-valX.addEventListener("change", () => {
-    calcular()
-});
-
-valY.addEventListener("change", () => {
-    calcular()
-});
-
-valZ.addEventListener("change", () => {
-    calcular()
-});
-
-porcentagemInput.addEventListener("change", () => {
-    calcular()
-});
+const inputs = window.document.querySelectorAll(".inputs")
 
 
-
-tipoPersInput.addEventListener("change", () => {
-    calcular()
+/*Observa todos os inputs, e se alterados chama a função "calcular" */
+inputs.forEach(input => {
+    input.addEventListener("change", calcular);
 });
-valXPersInput.addEventListener("change", () => {
-    calcular()
-});
-valYPersInput.addEventListener("change", () => {
-    calcular()
-});
-
 
 function calcular() {
+
+    const tipoTampa = window.document.querySelector('input[name="tipoTampa"]:checked').value
 
 
     let corPorcento;
@@ -157,10 +132,26 @@ function calcular() {
     const valorY = Number(valY.value) / 100
     const valorZ = Number(valZ.value) / 100
 
-    const metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
+    let metroquadrado
+    let perimetro
 
+    if (tipoTampa == 'tampaLacrada') {
 
-    let perimetro = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
+        /*este calculo e para caixa lacrada*/ 
+        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
+        perimetro = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
+
+    } else if (tipoTampa == 'tampa3cm') {
+        /*este calculo e para caixa com tampa de 3cm                                                     Adiciona mais as abas latereais de 3cm*/ 
+        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * 0.03) * 2) + ((valorY * 0.03) * 2)
+        perimetro = ((valorX * 12) + (valorY * 12) + (valorZ * 8) + (0.03 * 8)) * 100
+
+    } else {
+        /*este calculo e para caixa com tampa total                                                     Adiciona mais as abas latereais totais*/ 
+        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
+        perimetro = ((valorX * 12) + (valorY * 12) + (valorZ * 16)) * 100
+    }
+
 
     let tempCorte = perimetro / speed
 
@@ -170,9 +161,9 @@ function calcular() {
 
     let segundosCorte = (tempCorte % 60 / 100)
 
-    let valorCorte 
-    
-     if (minutosCorte == 0 && segundosCorte > 0) {
+    let valorCorte
+
+    if (minutosCorte == 0 && segundosCorte > 0) {
         valorCorte = 3
     } else if (minutosCorte == 0 && segundosCorte == 0) {
         valorCorte = 0
@@ -191,6 +182,10 @@ function calcular() {
 
     valorVendaText.innerHTML = (calcVenda).toFixed(2)
 
+
+    /*------------------------------------
+    PERSONALIZAÇÃO
+    ------------------------------------*/
 
     let valorAreaPers
 
@@ -295,26 +290,26 @@ document.querySelectorAll(".btn-copiar").forEach(botao => {
 });
 
 function copiarTexto(texto) {
-        const textArea = document.createElement("textarea");
-        textArea.value = texto;
-        
-        // Garante que o elemento não seja visível mas esteja no DOM
-        textArea.style.position = "fixed";
-        textArea.style.left = "-9999px";
-        textArea.style.top = "0";
-        document.body.appendChild(textArea);
-        
-        textArea.focus();
-        textArea.select();
+    const textArea = document.createElement("textarea");
+    textArea.value = texto;
 
-        try {
-            const sucesso = document.execCommand('copy');
-            if (sucesso) {
-                console.log("Copiado (via fallback HTTP)!");
-            }
-        } catch (err) {
-            console.error("Falha Crítica ao copiar:", err);
+    // Garante que o elemento não seja visível mas esteja no DOM
+    textArea.style.position = "fixed";
+    textArea.style.left = "-9999px";
+    textArea.style.top = "0";
+    document.body.appendChild(textArea);
+
+    textArea.focus();
+    textArea.select();
+
+    try {
+        const sucesso = document.execCommand('copy');
+        if (sucesso) {
+            console.log("Copiado (via fallback HTTP)!");
         }
+    } catch (err) {
+        console.error("Falha Crítica ao copiar:", err);
+    }
 
-        document.body.removeChild(textArea);
+    document.body.removeChild(textArea);
 }
