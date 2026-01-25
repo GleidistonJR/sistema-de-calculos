@@ -13,7 +13,8 @@
     <div id="header"></div>
 
     <h1 class="text-center text-3xl font-semibold pt-5 text-gray-600">Calculo de Caixa</h1>
-    <main class="grid grid-cols-3 w-10/12 m-auto p-5 gap-5">
+
+    <main class="grid grid-cols-1 xl:grid-cols-3 xl:w-10/12 m-auto p-5 gap-5">
 
         <section class="grid grid-rows-2 gap-5">
 
@@ -52,20 +53,20 @@
 
                 <div class="mt-5 mb-2 grid grid-cols-4 items-center">
                     <label for="valX" class="text-md font-medium">X (cm)</label>
-                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs" type="number"
-                        placeholder="50">
+                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="50">
                 </div>
 
                 <div class="mb-2 grid grid-cols-4 items-center">
                     <label for="valY" class="text-md font-medium">Y (cm)</label>
-                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs" type="number"
-                        placeholder="50">
+                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="50">
                 </div>
 
                 <div class="mb-2 grid grid-cols-4 items-center">
                     <label for="valZ" class="text-md font-medium">Z (cm)</label>
-                    <input id="valZ" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs" type="number"
-                        placeholder="50">
+                    <input id="valZ" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="50">
                 </div>
 
             </article>
@@ -103,17 +104,17 @@
 
         </section>
 
-        <section class="col-span-2">
+        <section class="xl:col-span-2">
             <div class="rounded shadow-xl p-5 bg-white">
 
-                <div class="grid grid-cols-9 text-center">
-                    <div class="col-span-3 col-start-2 p-2 border border-gray-300 rounded">
+                <div class="grid grid-cols-8 text-center">
+                    <div class="col-span-4 p-2 border border-gray-300 rounded">
                         <h3 class="text-xl font-bold text-gray-700">Chapa</h3>
                         <p class="text-2xl">R$ <span id="valorvenda"
                                 class="text-green-700 text-2xl font-bold">00,00</span></p>
                     </div>
 
-                    <div class="col-span-3 col-start-6 p-2 border border-gray-300 rounded">
+                    <div class="col-span-4 p-2 border border-gray-300 rounded">
                         <h3 class="text-xl font-bold text-gray-700">Personalização</h3>
                         <p class="text-2xl">R$ <span id="valorVendaPers"
                                 class="text-green-700 text-2xl font-bold">00,00</span>
@@ -123,7 +124,8 @@
 
                 <div class="text-center p-3 mt-5 bg-white">
                     <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Ajustes</h2>
-                    <div class="mt-5 gap-5 flex justify-center text-xl text-gray-600 font-semibold ">
+
+                    <div class="text-start p-5 gap-3 flex flex-col text-xl text-gray-600 font-semibold ">
                         <label>
                             <input type="radio" class="inputs" name="tipoTampa" value="tampaLacrada">
                             Tampa Lacrada
@@ -140,10 +142,14 @@
                         </label>
 
                     </div>
-                    <div class="w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
-                        <label for="porcentagem" class="col-start-2 text-md font-medium text-gray-600">Percentual
-                            (%)</label>
-                        <input id="porcentagem" class="col-span-2 border border-gray-400 p-1 rounded-md text-center inputs"
+
+                    <div class="xl:w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
+                        <label for="porcentagem"
+                            class="col-span-4 xl:col-span-2 text-xl font-medium text-gray-600">
+                            Percentual (%)
+                        </label>
+                        <input id="porcentagem"
+                            class="col-span-4 xl:col-span-2 border border-gray-400 p-1 rounded-md text-center inputs"
                             type="number" value="65">
                     </div>
                 </div>

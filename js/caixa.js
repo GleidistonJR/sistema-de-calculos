@@ -141,7 +141,7 @@ function calcular() {
         metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
         perimetro = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
 
-    } else if (tipoTampa == 'tampa3cm') {
+    } else if (tipoTampa == 'tampa3cm' && valorX ) {
         /*este calculo e para caixa com tampa de 3cm                                                     Adiciona mais as abas latereais de 3cm*/ 
         metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * 0.03) * 2) + ((valorY * 0.03) * 2)
         perimetro = ((valorX * 12) + (valorY * 12) + (valorZ * 8) + (0.03 * 8)) * 100
