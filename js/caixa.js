@@ -22,7 +22,6 @@ const valY = window.document.getElementById("valY")
 const valZ = window.document.getElementById("valZ")
 
 
-const porcentagemInput = window.document.getElementById("porcentagem")
 
 const metroQuadradoText = window.document.getElementById("metroquadrado")
 const tempoCorteText = window.document.getElementById("tempoCorte")
@@ -39,6 +38,8 @@ const valYPersInput = window.document.getElementById("valYPers")
 const areaPersText = window.document.getElementById("areaPers")
 const valorVendaPersText = window.document.getElementById("valorVendaPers")
 
+const porcentagemInput = window.document.getElementById("porcentagem")
+const quantidadeInput = window.document.getElementById("quantidade")
 
 const inputs = window.document.querySelectorAll(".inputs")
 
@@ -52,6 +53,7 @@ function calcular() {
 
     const tipoTampa = window.document.querySelector('input[name="tipoTampa"]:checked').value
 
+    const quantidade = quantidadeInput.value
 
     let corPorcento;
 
@@ -231,7 +233,7 @@ function calcular() {
 
     valorVendaPersText.innerHTML = (calcValorPers).toFixed(2)
 
-    valorFinalText.innerHTML = (calcValorPers + calcVenda).toFixed(2)
+    valorFinalText.innerHTML = ((calcValorPers + calcVenda) * quantidade).toFixed(2)
 
 
 
@@ -245,24 +247,41 @@ function calcular() {
 
 
 
-    if (calcVenda != 0 && calcValorPers == 0) {
-
-        textoOrcamento = `
-Caixa em acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
-Contem: Tampa modelo de encaixe
+/* CHAPA*/
+    if (calcVenda) {
+        if (calcVenda && !calcValorPers) {
+            if (quantidade == 1) {
+                textoOrcamento = `
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+(Apenas corte)
 
 R$ ${calcVenda.toFixed(2)} - Unidade
 
-Tempo médio para ser produzido de 5 dias úteis.
+Tempo médio para ser produzido de 2 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
 Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
 
-    } else if (calcVenda != 0 && calcValorPers != 0) {
+            }
+            else if (quantidade > 1) {
+                textoOrcamento = `
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+(Apenas corte)
 
-        textoOrcamento = `
-Caixa em acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
-Contem: Tampa modelo de encaixe
+R$ ${calcVenda.toFixed(2)} - Unidade
+
+R$ ${(Number((calcVenda).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
+
+Tempo médio para ser produzido de 2 dias úteis.
+Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
+Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
+Retirar na loja, não estamos fazendo entrega.`
+            }
+
+        } else if (calcVenda && calcValorPers) {
+            if (quantidade == 1) {
+                textoOrcamento = `
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
 Personalização: ${personalizacao}
 
 R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
@@ -271,10 +290,56 @@ Tempo médio para ser produzido de 5 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
 Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
+            }
+            else if (quantidade > 1) {
+                textoOrcamento = `
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+Personalização: ${personalizacao}
+
+R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
+
+R$ ${((Number(calcVenda + calcValorPers).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
+
+Tempo médio para ser produzido de 5 dias úteis.
+Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
+Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
+Retirar na loja, não estamos fazendo entrega.`
+            }
+        }
+
+
+    }
+    /* APENAS PERSONALIZAÇÂO*/
+    else if (calcValorPers) {
+
+        if (quantidade == 1) {
+            textoOrcamento = `
+    Personalização em ${personalizacao} medindo ${valXPers * 100} x ${valYPers * 100}
+    
+R$ ${(calcValorPers).toFixed(2)} - Unidade
+
+Tempo médio para ser produzido de 5 dias úteis.
+Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
+Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
+Retirar na loja, não estamos fazendo entrega.`
+        } else if (quantidade > 1) {
+            textoOrcamento = `
+Personalização em ${personalizacao} medindo ${valXPers * 100} x ${valYPers * 100}
+    
+R$ ${(calcValorPers).toFixed(2)} - Unidade
+
+R$ ${(Number(calcValorPers.toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
+
+Tempo médio para ser produzido de 5 dias úteis.
+Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
+Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
+Retirar na loja, não estamos fazendo entrega.`
+        }
     }
 
     copiarOrcamento.dataset.texto = textoOrcamento
 }
+
 
 
 
