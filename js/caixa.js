@@ -23,7 +23,7 @@ const valZ = window.document.getElementById("valZ")
 
 
 
-const metroQuadradoText = window.document.getElementById("metroquadrado")
+const areaChapaText = window.document.getElementById("metroquadrado")
 const tempoCorteText = window.document.getElementById("tempoCorte")
 const valorVendaText = window.document.getElementById("valorvenda")
 
@@ -134,33 +134,33 @@ function calcular() {
     const valorY = Number(valY.value) / 100
     const valorZ = Number(valZ.value) / 100
 
-    let metroquadrado
-    let perimetro
+    let metroQuadradoChapa
+    let perimetroCorte
 
     if (tipoTampa == 'semTampa') {
         /*este calculo e para Sem tampa*/ 
-        metroquadrado = ((valorX * valorY) * 1) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
-        perimetro = ((valorX * 6) + (valorY * 6) + (valorZ * 8)) * 100
+        metroQuadradoChapa = ((valorX * valorY) * 1) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
+        perimetroCorte = ((valorX * 6) + (valorY * 6) + (valorZ * 8)) * 100
     }
     else if (tipoTampa == 'tampaLacrada') {
 
         /*este calculo e para caixa lacrada*/ 
-        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
-        perimetro = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
+        metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
+        perimetroCorte = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
 
     } else if (tipoTampa == 'tampa3cm' && valorX ) {
         /*este calculo e para caixa com tampa de 3cm                                                     Adiciona mais as abas latereais de 3cm*/ 
-        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * 0.03) * 2) + ((valorY * 0.03) * 2)
-        perimetro = ((valorX * 12) + (valorY * 12) + (valorZ * 8) + (0.03 * 8)) * 100
+        metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * 0.03) * 2) + ((valorY * 0.03) * 2)
+        perimetroCorte = ((valorX * 12) + (valorY * 12) + (valorZ * 8) + (0.03 * 8)) * 100
 
     } else {
         /*este calculo e para caixa com tampa total                                                     Adiciona mais as abas latereais totais*/ 
-        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
-        perimetro = ((valorX * 12) + (valorY * 12) + (valorZ * 16)) * 100
+        metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
+        perimetroCorte = ((valorX * 12) + (valorY * 12) + (valorZ * 16)) * 100
     }
 
 
-    let tempCorte = perimetro / speed
+    let tempCorte = perimetroCorte / speed
 
     let porcentagem = Number(porcentagemInput.value) / 100 + 1
 
@@ -180,10 +180,10 @@ function calcular() {
     }
 
 
-    let calcVenda = (metroquadrado * espessura * corPorcento + valorCorte) * porcentagem
+    let calcVenda = (metroQuadradoChapa * espessura * corPorcento + valorCorte) * porcentagem
 
 
-    metroQuadradoText.innerHTML = (metroquadrado).toFixed(4)
+    areaChapaText.innerHTML = (metroQuadradoChapa).toFixed(4)
 
     tempoCorteText.innerHTML = (minutosCorte + segundosCorte).toFixed(2)
 
@@ -230,11 +230,11 @@ function calcular() {
     let valXPers = Number(valXPersInput.value) / 100
     let valYPers = Number(valYPersInput.value) / 100
 
-    let areaPers = valXPers * valYPers
+    let metroQuadradoPers = valXPers * valYPers
 
-    let calcValorPers = (areaPers * valorAreaPers) * porcentagem
+    let calcValorPers = (metroQuadradoPers * valorAreaPers) * porcentagem
 
-    areaPersText.innerHTML = (areaPers).toFixed(4)
+    areaPersText.innerHTML = (metroQuadradoPers).toFixed(4)
 
     valorVendaPersText.innerHTML = (calcValorPers).toFixed(2)
 

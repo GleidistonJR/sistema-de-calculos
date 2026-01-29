@@ -23,7 +23,7 @@ const valX = window.document.getElementById("valX") ?? 0
 const valY = window.document.getElementById("valY") ?? 0
 
 
-const metroQuadradoText = window.document.getElementById("metroquadrado")
+const areaChapaText = window.document.getElementById("metroquadrado")
 const tempoCorteText = window.document.getElementById("tempoCorte")
 const valorVendaText = window.document.getElementById("valorvenda")
 
@@ -85,11 +85,6 @@ inputs.forEach(input => {
 
 function calcular() {
 
-
-    const valorX = Number(valX.value) / 100
-    const valorY = Number(valY.value) / 100
-
-    const metroquadrado = valorX * valorY
 
     const quantidade = quantidadeInput.value
 
@@ -185,6 +180,11 @@ function calcular() {
             speed = 1;
     }
 
+    const valorX = Number(valX.value) / 100
+    const valorY = Number(valY.value) / 100
+
+    const metroQuadradoChapa = valorX * valorY
+
 
     let porcentagem = Number(porcentagemInput.value) / 100 + 1
 
@@ -208,10 +208,10 @@ function calcular() {
     }
 
 
-    let calcVenda = (metroquadrado * valorMetroQuadrado * corPorcento + valorCorte) * porcentagem
+    let calcVenda = (metroQuadradoChapa * valorMetroQuadrado * corPorcento + valorCorte) * porcentagem
 
 
-    metroQuadradoText.innerHTML = (metroquadrado).toFixed(4)
+    areaChapaText.innerHTML = (metroQuadradoChapa).toFixed(4)
 
     tempoCorteText.innerHTML = (minutosCorte + segundosCorte).toFixed(2)
 
@@ -254,7 +254,7 @@ function calcular() {
             valorAreaPers = 1000;
             personalizacao = "Impressão UV (Alta definição)"
             break;
-            
+
         case "abs":
             valorAreaPers = 800;
             personalizacao = "Trotek (ABS)"
@@ -273,11 +273,11 @@ function calcular() {
     let valXPers = Number(valXPersInput.value) / 100
     let valYPers = Number(valYPersInput.value) / 100
 
-    let areaPers = valXPers * valYPers
+    let metroQuadradoPers = valXPers * valYPers
 
-    let calcValorPers = (areaPers * valorAreaPers) * porcentagem
+    let calcValorPers = (metroQuadradoPers * valorAreaPers) * porcentagem
 
-    areaPersText.innerHTML = (areaPers).toFixed(4)
+    areaPersText.innerHTML = (metroQuadradoPers).toFixed(4)
 
     valorVendaPersText.innerHTML = (calcValorPers).toFixed(2)
 
