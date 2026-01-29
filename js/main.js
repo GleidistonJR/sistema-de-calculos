@@ -252,7 +252,17 @@ function calcular() {
 
         case "uv":
             valorAreaPers = 1000;
-            personalizacao = "Impressão (UV Alta definição)"
+            personalizacao = "Impressão UV (Alta definição)"
+            break;
+            
+        case "abs":
+            valorAreaPers = 800;
+            personalizacao = "Trotek (ABS)"
+            break;
+
+        case "acrilicoEspelhado":
+            valorAreaPers = 400;
+            personalizacao = "Acrilico espelhado"
             break;
 
         default:
@@ -308,7 +318,7 @@ Acrílico ${corInput.value} ${material}mm, medindo ${valorX * 100}x${valorY * 10
 
 R$ ${calcVenda.toFixed(2)} - Unidade
 
-R$ ${(Number((calcVenda).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
+R$ ${(Number((calcVenda).toFixed(2)) * quantidade).toFixed(2)} - ${quantidade} Unidades
 
 Tempo médio para ser produzido de 2 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
@@ -336,7 +346,7 @@ Personalização: ${personalizacao}
 
 R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
 
-R$ ${((Number(calcVenda + calcValorPers).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
+R$ ${((Number(calcVenda + calcValorPers).toFixed(2)) * quantidade).toFixed(2)} - ${quantidade} Unidades
 
 Tempo médio para ser produzido de 5 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
@@ -366,7 +376,7 @@ Personalização em ${personalizacao} medindo ${valXPers * 100} x ${valYPers * 1
     
 R$ ${(calcValorPers).toFixed(2)} - Unidade
 
-R$ ${(Number(calcValorPers.toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
+R$ ${(Number(calcValorPers.toFixed(2)) * quantidade).toFixed(2)} - ${quantidade} Unidades
 
 Tempo médio para ser produzido de 5 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
