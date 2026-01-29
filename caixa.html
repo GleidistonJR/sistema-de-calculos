@@ -13,7 +13,8 @@
     <div id="header"></div>
 
     <h1 class="text-center text-3xl font-semibold pt-5 text-gray-600">Calculo de Caixa</h1>
-    <main class="grid grid-cols-3 w-10/12 m-auto p-5 gap-5">
+
+    <main class="grid grid-cols-1 xl:grid-cols-3 xl:w-10/12 m-auto p-5 gap-5">
 
         <section class="grid grid-rows-2 gap-5">
 
@@ -23,7 +24,7 @@
 
                 <div class="mt-5 grid grid-cols-4 items-center mb-2 acrilicoItem">
                     <label class="text-md font-medium">Cor</label>
-                    <select id="corChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md">
+                    <select id="corChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md inputs">
                         <option value="cristal">Cristal</option>
                         <option value="colorido">Colorido</option>
                     </select>
@@ -31,7 +32,7 @@
 
                 <div class="grid grid-cols-4 items-center mb-2 acrilicoItem">
                     <label class="text-md font-medium">Espessura</label>
-                    <select id="espessuraChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md">
+                    <select id="espessuraChapa" class="col-span-3 w-full p-2 border border-gray-400 rounded-md inputs">
                         <option value="2">2mm</option>
                         <option value="3">3mm</option>
                         <option value="4">4mm</option>
@@ -52,20 +53,20 @@
 
                 <div class="mt-5 mb-2 grid grid-cols-4 items-center">
                     <label for="valX" class="text-md font-medium">X (cm)</label>
-                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
-                        placeholder="50">
+                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="50">
                 </div>
 
                 <div class="mb-2 grid grid-cols-4 items-center">
                     <label for="valY" class="text-md font-medium">Y (cm)</label>
-                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
-                        placeholder="50">
+                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="50">
                 </div>
-                
+
                 <div class="mb-2 grid grid-cols-4 items-center">
                     <label for="valZ" class="text-md font-medium">Z (cm)</label>
-                    <input id="valZ" class="col-span-3 border border-gray-400 p-1 rounded-md text-center" type="number"
-                        placeholder="50">
+                    <input id="valZ" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="50">
                 </div>
 
             </article>
@@ -76,7 +77,7 @@
                 <div class="mt-5 grid grid-cols-4 items-center">
                     <label class="text-md font-medium">Tipo</label>
                     <select id="tipoPers"
-                        class="col-span-3 w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="col-span-3 w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 inputs">
                         <option value="branco">Adesivo Branco</option>
                         <option value="impresso">Adesivo Impreso</option>
                         <option selected value="espelhado">Adesivo Espelhado</option>
@@ -88,13 +89,13 @@
 
                 <div class="grid grid-cols-4 items-center mt-5">
                     <label for="valXPers" class="text-md font-medium">X (cm)</label>
-                    <input id="valXPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center"
+                    <input id="valXPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
                         type="number" placeholder="50">
                 </div>
 
                 <div class="grid grid-cols-4 items-center mt-2">
                     <label for="valYPers" class="text-md font-medium">Y (cm)</label>
-                    <input id="valYPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center"
+                    <input id="valYPers" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
                         type="number" placeholder="50">
                 </div>
 
@@ -103,17 +104,17 @@
 
         </section>
 
-        <section class="col-span-2">
+        <section class="xl:col-span-2">
             <div class="rounded shadow-xl p-5 bg-white">
 
-                <div class="grid grid-cols-9 text-center">
-                    <div class="col-span-3 col-start-2 p-2 border border-gray-300 rounded">
+                <div class="grid grid-cols-8 text-center">
+                    <div class="col-span-4 p-2 border border-gray-300 rounded">
                         <h3 class="text-xl font-bold text-gray-700">Chapa</h3>
                         <p class="text-2xl">R$ <span id="valorvenda"
                                 class="text-green-700 text-2xl font-bold">00,00</span></p>
                     </div>
 
-                    <div class="col-span-3 col-start-6 p-2 border border-gray-300 rounded">
+                    <div class="col-span-4 p-2 border border-gray-300 rounded">
                         <h3 class="text-xl font-bold text-gray-700">Personalização</h3>
                         <p class="text-2xl">R$ <span id="valorVendaPers"
                                 class="text-green-700 text-2xl font-bold">00,00</span>
@@ -123,9 +124,35 @@
 
                 <div class="text-center p-3 mt-5 bg-white">
                     <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Ajustes</h2>
-                    <div class="w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
-                        <label for="porcentagem" class="col-start-2 text-md font-medium">Percentual (%)</label>
-                        <input id="porcentagem" class="col-span-2 border border-gray-400 p-1 rounded-md text-center"
+
+                    <div class="text-start p-5 gap-3 flex flex-col text-xl text-gray-600 font-semibold ">
+                        <label>
+                            <input type="radio" class="inputs" name="tipoTampa" value="semTampa">
+                            Sem Tampa
+                        </label>
+                        <label>
+                            <input type="radio" class="inputs" name="tipoTampa" value="tampaLacrada">
+                            Tampa Lacrada
+                        </label>
+
+                        <label>
+                            <input type="radio" class="inputs" name="tipoTampa" value="tampa3cm" checked>
+                            Tampa 3cm
+                        </label>
+
+                        <label>
+                            <input type="radio" class="inputs" name="tipoTampa" value="tampaTotal">
+                            Tampa Total
+                        </label>
+
+                    </div>
+
+                    <div class="xl:w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
+                        <label for="porcentagem" class="col-span-4 xl:col-span-2 text-xl font-medium text-gray-600">
+                            Percentual (%)
+                        </label>
+                        <input id="porcentagem"
+                            class="col-span-4 xl:col-span-2 border border-gray-400 p-1 rounded-md text-center inputs"
                             type="number" value="65">
                     </div>
                 </div>
@@ -133,6 +160,14 @@
                 <h2 class="text-center mt-5 text-2xl font-bold p-2 border-b border-gray-300 text-gray-600">Orçamento
                     Final</h2>
 
+
+                <div class="text-center w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
+                    <label for="quantidade" class="col-span-4 xl:col-span-2 text-xl font-medium text-gray-600">
+                        Quantidade
+                    </label>
+                    <input type="number" id="quantidade" value="1"
+                        class="col-span-4 xl:col-span-2 border border-gray-400 p-1 rounded-md text-center inputs">
+                </div>
 
                 <div class="my-16 p-2 border-b border-gray-300 text-center">
                     <p class="text-6xl"><span class="text-green-600 font-semibold">R$<span
