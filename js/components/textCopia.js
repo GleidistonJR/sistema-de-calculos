@@ -1,15 +1,15 @@
 export function TextCopia (){
 return`
 <div class="xl:w-10/12 p-5 m-auto ">
-<div class=" m-auto bg-white rounded">      
-    <h3 class="p-2 text-center bg-gray-300 rounded text-2xl font-semibold
+    <div class=" m-auto bg-white rounded">
+        <h3 class="p-2 text-center bg-gray-300 rounded text-2xl font-semibold
         text-gray-700">Informações Rapidas</h3>
 
         <div class="flex justify-between p-2 border-b border-gray-300">
             <p class="text-xl">Pedir dados para cadastro</p>
             <div>
-                <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded
-                    hover:bg-blue-500 hover:cursor-pointer" data-texto="
+                <button class="btn-copiar  border px-5 py-1 bg-green-600 text-white font-semibold rounded
+                    hover:bg-green-500 hover:cursor-pointer" data-texto="
 Por gentileza enviar CNPJ para cadastro e emissão do pedido, ou os dados abaixo. 
 
 Nome Completo:
@@ -23,8 +23,8 @@ CEP:
         <div class="flex justify-between p-2 border-b border-gray-300">
             <p class="text-xl">Chave PIX:</p>
             <div>
-                <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded
-                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+                <button class="btn-copiar  border px-5 py-1 bg-green-600 text-white font-semibold rounded
+                hover:bg-green-500 hover:cursor-pointer" data-texto="
 Chave PIX:
 23.650.001/0001-87
                         ">Copiar</button>
@@ -34,8 +34,8 @@ Chave PIX:
         <div class="flex justify-between p-2 border-b border-gray-300">
             <p class="text-xl">Localização:</p>
             <div>
-                <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded
-                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+                <button class="btn-copiar  border px-5 py-1 bg-green-600 text-white font-semibold rounded
+                hover:bg-green-500 hover:cursor-pointer" data-texto="
 Localização:
 https://maps.app.goo.gl/ZssR5mjt2B3f9PULA
 
@@ -44,12 +44,11 @@ Rua C-162 nº 124 Qd. 252 Lt. 18 - Setor Jardim América - Goiânia - GO - CEP. 
             </div>
         </div>
 
-
         <div class="flex justify-between p-2 border-b border-gray-300">
             <p class="text-xl">Horario de funcionamento:</p>
             <div>
-                <button class="btn-copiar  border px-5 py-1 bg-blue-600 text-white font-semibold rounded
-                hover:bg-blue-500 hover:cursor-pointer" data-texto="
+                <button class="btn-copiar  border px-5 py-1 bg-green-600 text-white font-semibold rounded
+                hover:bg-green-500 hover:cursor-pointer" data-texto="
 Estamos abertos de segunda à sexta-feira
 das 08:00 às 18:00 horas
 
@@ -138,6 +137,31 @@ PIX:
                         ">Copiar</button>
             </div>
         </div>
+        
+        <div class="mt-5 flex justify-between p-2 border-b border-gray-300">
+            <p class="text-xl">Consulta CNPJ:</p>
+            <div>
+                <a href="https://solucoes.receita.fazenda.gov.br/Servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank" class="border px-5 py-1 bg-yellow-500 text-white font-semibold rounded
+                hover:bg-yellow-400 hover:cursor-pointer">Abrir</a>
+            </div>
+        </div>
+
+        <div class="flex justify-between p-2 border-b border-gray-300">
+            <p class="text-xl">Consulta CPF:</p>
+            <div>
+                <a href="https://www.situacao-cadastral.com/" target="_blank" class="border px-5 py-1 bg-yellow-500 text-white font-semibold rounded
+                hover:bg-yellow-400 hover:cursor-pointer">Abrir</a>
+            </div>
+        </div>
+        <div class="flex justify-between p-2 border-b border-gray-300">
+            <p class="text-xl">Icones:</p>
+            <div>
+                <a href="https://www.flaticon.com/br/" target="_blank" class="border px-5 py-1 bg-yellow-500 text-white font-semibold rounded
+                hover:bg-yellow-400 hover:cursor-pointer">Abrir</a>
+            </div>
+        </div>
+
+
     </div>
 </div>
 `
