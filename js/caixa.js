@@ -20,8 +20,7 @@ const espessuraInput = window.document.getElementById("espessuraChapa")
 const valX = window.document.getElementById("valX")
 const valY = window.document.getElementById("valY")
 const valZ = window.document.getElementById("valZ")
-
-
+const porcentagemInput = window.document.getElementById("porcentagem")
 
 const metroQuadradoText = window.document.getElementById("metroquadrado")
 const tempoCorteText = window.document.getElementById("tempoCorte")
@@ -38,22 +37,46 @@ const valYPersInput = window.document.getElementById("valYPers")
 const areaPersText = window.document.getElementById("areaPers")
 const valorVendaPersText = window.document.getElementById("valorVendaPers")
 
-const porcentagemInput = window.document.getElementById("porcentagem")
-const quantidadeInput = window.document.getElementById("quantidade")
 
-const inputs = window.document.querySelectorAll(".inputs")
-
-
-/*Observa todos os inputs, e se alterados chama a função "calcular" */
-inputs.forEach(input => {
-    input.addEventListener("change", calcular);
+corInput.addEventListener("change", () => {
+    calcular()
 });
+
+espessuraInput.addEventListener("change", () => {
+    calcular()
+});
+
+valX.addEventListener("change", () => {
+    calcular()
+});
+
+valY.addEventListener("change", () => {
+    calcular()
+});
+
+valZ.addEventListener("change", () => {
+    calcular()
+});
+
+porcentagemInput.addEventListener("change", () => {
+    calcular()
+});
+
+
+
+tipoPersInput.addEventListener("change", () => {
+    calcular()
+});
+valXPersInput.addEventListener("change", () => {
+    calcular()
+});
+valYPersInput.addEventListener("change", () => {
+    calcular()
+});
+
 
 function calcular() {
 
-    const tipoTampa = window.document.querySelector('input[name="tipoTampa"]:checked').value
-
-    const quantidade = quantidadeInput.value
 
     let corPorcento;
 
@@ -134,26 +157,10 @@ function calcular() {
     const valorY = Number(valY.value) / 100
     const valorZ = Number(valZ.value) / 100
 
-    let metroquadrado
-    let perimetro
+    const metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
 
-    if (tipoTampa == 'tampaLacrada') {
 
-        /*este calculo e para caixa lacrada*/ 
-        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
-        perimetro = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
-
-    } else if (tipoTampa == 'tampa3cm' && valorX ) {
-        /*este calculo e para caixa com tampa de 3cm                                                     Adiciona mais as abas latereais de 3cm*/ 
-        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * 0.03) * 2) + ((valorY * 0.03) * 2)
-        perimetro = ((valorX * 12) + (valorY * 12) + (valorZ * 8) + (0.03 * 8)) * 100
-
-    } else {
-        /*este calculo e para caixa com tampa total                                                     Adiciona mais as abas latereais totais*/ 
-        metroquadrado = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
-        perimetro = ((valorX * 12) + (valorY * 12) + (valorZ * 16)) * 100
-    }
-
+    let perimetro = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
 
     let tempCorte = perimetro / speed
 
@@ -163,9 +170,9 @@ function calcular() {
 
     let segundosCorte = (tempCorte % 60 / 100)
 
-    let valorCorte
-
-    if (minutosCorte == 0 && segundosCorte > 0) {
+    let valorCorte 
+    
+     if (minutosCorte == 0 && segundosCorte > 0) {
         valorCorte = 3
     } else if (minutosCorte == 0 && segundosCorte == 0) {
         valorCorte = 0
@@ -184,10 +191,6 @@ function calcular() {
 
     valorVendaText.innerHTML = (calcVenda).toFixed(2)
 
-
-    /*------------------------------------
-    PERSONALIZAÇÃO
-    ------------------------------------*/
 
     let valorAreaPers
 
@@ -233,7 +236,7 @@ function calcular() {
 
     valorVendaPersText.innerHTML = (calcValorPers).toFixed(2)
 
-    valorFinalText.innerHTML = ((calcValorPers + calcVenda) * quantidade).toFixed(2)
+    valorFinalText.innerHTML = (calcValorPers + calcVenda).toFixed(2)
 
 
 
@@ -247,41 +250,24 @@ function calcular() {
 
 
 
-/* CHAPA*/
-    if (calcVenda) {
-        if (calcVenda && !calcValorPers) {
-            if (quantidade == 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
-(Apenas corte)
+    if (calcVenda != 0 && calcValorPers == 0) {
+
+        textoOrcamento = `
+Caixa em acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+Contem: Tampa modelo de encaixe
 
 R$ ${calcVenda.toFixed(2)} - Unidade
 
-Tempo médio para ser produzido de 2 dias úteis.
+Tempo médio para ser produzido de 5 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
 Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
 
-            }
-            else if (quantidade > 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
-(Apenas corte)
+    } else if (calcVenda != 0 && calcValorPers != 0) {
 
-R$ ${calcVenda.toFixed(2)} - Unidade
-
-R$ ${(Number((calcVenda).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
-
-Tempo médio para ser produzido de 2 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-            }
-
-        } else if (calcVenda && calcValorPers) {
-            if (quantidade == 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+        textoOrcamento = `
+Caixa em acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+Contem: Tampa modelo de encaixe
 Personalização: ${personalizacao}
 
 R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
@@ -290,56 +276,10 @@ Tempo médio para ser produzido de 5 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
 Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
-            }
-            else if (quantidade > 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
-Personalização: ${personalizacao}
-
-R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
-
-R$ ${((Number(calcVenda + calcValorPers).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
-
-Tempo médio para ser produzido de 5 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-            }
-        }
-
-
-    }
-    /* APENAS PERSONALIZAÇÂO*/
-    else if (calcValorPers) {
-
-        if (quantidade == 1) {
-            textoOrcamento = `
-    Personalização em ${personalizacao} medindo ${valXPers * 100} x ${valYPers * 100}
-    
-R$ ${(calcValorPers).toFixed(2)} - Unidade
-
-Tempo médio para ser produzido de 5 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-        } else if (quantidade > 1) {
-            textoOrcamento = `
-Personalização em ${personalizacao} medindo ${valXPers * 100} x ${valYPers * 100}
-    
-R$ ${(calcValorPers).toFixed(2)} - Unidade
-
-R$ ${(Number(calcValorPers.toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
-
-Tempo médio para ser produzido de 5 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-        }
     }
 
     copiarOrcamento.dataset.texto = textoOrcamento
 }
-
 
 
 
@@ -355,26 +295,26 @@ document.querySelectorAll(".btn-copiar").forEach(botao => {
 });
 
 function copiarTexto(texto) {
-    const textArea = document.createElement("textarea");
-    textArea.value = texto;
+        const textArea = document.createElement("textarea");
+        textArea.value = texto;
+        
+        // Garante que o elemento não seja visível mas esteja no DOM
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        
+        textArea.focus();
+        textArea.select();
 
-    // Garante que o elemento não seja visível mas esteja no DOM
-    textArea.style.position = "fixed";
-    textArea.style.left = "-9999px";
-    textArea.style.top = "0";
-    document.body.appendChild(textArea);
-
-    textArea.focus();
-    textArea.select();
-
-    try {
-        const sucesso = document.execCommand('copy');
-        if (sucesso) {
-            console.log("Copiado (via fallback HTTP)!");
+        try {
+            const sucesso = document.execCommand('copy');
+            if (sucesso) {
+                console.log("Copiado (via fallback HTTP)!");
+            }
+        } catch (err) {
+            console.error("Falha Crítica ao copiar:", err);
         }
-    } catch (err) {
-        console.error("Falha Crítica ao copiar:", err);
-    }
 
-    document.body.removeChild(textArea);
+        document.body.removeChild(textArea);
 }

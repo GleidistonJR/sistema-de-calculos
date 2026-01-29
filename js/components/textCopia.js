@@ -1,6 +1,6 @@
 export function TextCopia (){
 return`
-<div class="xl:w-10/12 p-5 m-auto ">
+<div class="w-10/12 p-5 m-auto ">
 <div class=" m-auto bg-white rounded">      
     <h3 class="p-2 text-center bg-gray-300 rounded text-2xl font-semibold
         text-gray-700">Informações Rapidas</h3>
