@@ -19,6 +19,7 @@ const valorFinal = document.getElementById('valorFinal')
 const copiarOrcamento = window.document.getElementById("copiarOrcamento")
 
 let textoOrcamento = 'teste'
+let valorVenda = 0
 
 const inputs = window.document.querySelectorAll(".inputs")
 /*Observa todos os inputs, e se alterados chama a função "calcular" */
@@ -56,15 +57,15 @@ function verificarMaterial() {
             break;
 
         case 'pvc':
-            monstrarValor(230)
+            monstrarValor(216)
             break;
 
         case 'abs':
-            monstrarValor(800)
+            monstrarValor(650)
             break;
 
         case 'espelhado':
-            monstrarValor(400)
+            monstrarValor(423)
             break;
 
         default:
@@ -78,34 +79,34 @@ function calcularAcrilico() {
     let valor
     switch (espessura.value) {
         case '2':
-            valor = 200
+            valor = 363
             break
         case '3':
-            valor = 300
+            valor = 537
             break
         case '4':
-            valor = 400
+            valor = 715
             break
         case '5':
-            valor = 500
+            valor = 894
             break
         case '6':
-            valor = 600
+            valor = 1072
             break
         case '8':
-            valor = 800
+            valor = 1430
             break
         case '10':
-            valor = 1000
+            valor = 1788
             break
         case '12':
-            valor = 1200
+            valor = 23346
             break
         case '15':
-            valor = 1500
+            valor = 2933
             break
         case '20':
-            valor = 2000
+            valor = 4140
             break
 
         default:
@@ -125,20 +126,20 @@ function monstrarValor(valorBase) {
     /*Acrescenta a porcentagem*/
     const porcentagem = (porcentagemInp.value / 100) + 1
 
-    valorFinal.innerHTML = (valorBase * porcentagem).toFixed(2)
+    valorVenda = valorBase * porcentagem
+    valorFinal.innerHTML = (valorVenda).toFixed(2)
 
     textoCopia()
 }
 
 function textoCopia() {
     textoOrcamento = `
-Chapa de ${material.value} ${espessura.value} medindo 2x1 metros
-OBS: Chapa inteira (Com plastico e )
+Chapa de ${material.value} ${espessura.value}mm, medindo 2x1 metros
+OBS: Chapa inteira (Com plastico e borrachas)
 
-R$ ${material.value} - Unidade
+R$ ${(valorVenda).toFixed(2)} - Unidade
 
-Tempo médio para ser produzido de 2 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
+Temos a pronta entrega
 Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
 

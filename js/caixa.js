@@ -257,7 +257,7 @@ function calcular() {
         if (calcVenda && !calcValorPers) {
             if (quantidade == 1) {
                 textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
 (Apenas corte)
 
 R$ ${calcVenda.toFixed(2)} - Unidade
@@ -270,7 +270,7 @@ Retirar na loja, não estamos fazendo entrega.`
             }
             else if (quantidade > 1) {
                 textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
 (Apenas corte)
 
 R$ ${calcVenda.toFixed(2)} - Unidade
@@ -286,7 +286,7 @@ Retirar na loja, não estamos fazendo entrega.`
         } else if (calcVenda && calcValorPers) {
             if (quantidade == 1) {
                 textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
 Personalização: ${personalizacao}
 
 R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
@@ -298,7 +298,7 @@ Retirar na loja, não estamos fazendo entrega.`
             }
             else if (quantidade > 1) {
                 textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${valorX * 100}x${valorY * 100}x${valorZ * 100} (LxAxP) centímetros
+Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
 Personalização: ${personalizacao}
 
 R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
@@ -319,7 +319,7 @@ Retirar na loja, não estamos fazendo entrega.`
 
         if (quantidade == 1) {
             textoOrcamento = `
-    Personalização em ${personalizacao} medindo ${valXPers * 100} x ${valYPers * 100}
+    Personalização em ${personalizacao} medindo ${(valXPers * 100).toFixed(2)} x ${(valYPers * 100).toFixed(2)}
     
 R$ ${(calcValorPers).toFixed(2)} - Unidade
 
@@ -329,7 +329,7 @@ Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
         } else if (quantidade > 1) {
             textoOrcamento = `
-Personalização em ${personalizacao} medindo ${valXPers * 100} x ${valYPers * 100}
+Personalização em ${personalizacao} medindo ${(valXPers * 100).toFixed(2)} x ${(valYPers * 100).toFixed(2)}
     
 R$ ${(calcValorPers).toFixed(2)} - Unidade
 
