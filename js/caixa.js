@@ -9,12 +9,6 @@ const textCopiaContainer = document.querySelector('#textCopia');
 textCopiaContainer.innerHTML = TextCopia();
 
 
-let valorChapa = 0
-let valorPers = 0
-
-let textoOrcamento
-let personalizacao
-
 const corInput = window.document.getElementById("corChapa")
 const espessuraInput = window.document.getElementById("espessuraChapa")
 const valX = window.document.getElementById("valX")
@@ -49,15 +43,20 @@ inputs.forEach(input => {
     input.addEventListener("change", calcular);
 });
 
-let valorX 
-let valorY 
-let valorZ 
+let valorX
+let valorY
+let valorZ
 
 let valorVenda
 let valorTotalVenda
 
 let tipoTampa
 let quantidade
+
+let valorPers 
+
+let textoOrcamento
+let personalizacao
 
 function calcular() {
 
@@ -190,14 +189,14 @@ function calcular() {
     }
 
 
-    let calcVenda = (metroQuadradoChapa * espessura * corPorcento + valorCorte) * porcentagem
+    let valorMaterial = (metroQuadradoChapa * espessura * corPorcento + valorCorte) * porcentagem
 
 
     areaChapaText.innerHTML = (metroQuadradoChapa).toFixed(4)
 
     tempoCorteText.innerHTML = (minutosCorte + segundosCorte).toFixed(2)
 
-    valorVendaText.innerHTML = (calcVenda).toFixed(2)
+    valorVendaText.innerHTML = (valorMaterial).toFixed(2)
 
 
     /*------------------------------------
@@ -229,7 +228,7 @@ function calcular() {
 
         case "uv":
             valorAreaPers = 800;
-            personalizacao = "Impressão (UV Alta definição)"
+            personalizacao = "Impressão UV (Alta definição)"
             break;
 
         default:
@@ -242,15 +241,15 @@ function calcular() {
 
     let metroQuadradoPers = valXPers * valYPers
 
-    let calcValorPers = (metroQuadradoPers * valorAreaPers) * porcentagem
+    valorPers = (metroQuadradoPers * valorAreaPers) * porcentagem
 
     areaPersText.innerHTML = (metroQuadradoPers).toFixed(4)
 
-    valorVendaPersText.innerHTML = (calcValorPers).toFixed(2)
+    valorVendaPersText.innerHTML = (valorPers).toFixed(2)
 
-    valorVenda = calcValorPers + calcVenda
-    valorTotalVenda = (calcValorPers + calcVenda) * quantidade
-    
+    valorVenda = valorPers + valorMaterial
+    valorTotalVenda = (valorPers + valorMaterial) * quantidade
+
     valorFinalText.innerHTML = (valorTotalVenda).toFixed(2)
 
 
@@ -262,9 +261,10 @@ function calcular() {
 
 function textoCopia() {
     let descricaoMaterial = ``;
+    let descricaoPersonalizacao = ``;
     let descricaoQuantidade = ``;
-    
-    
+
+
     if (tipoTampa == 'semTampa') {
         descricaoMaterial += `Modelo sem tampa`;
     }
@@ -274,20 +274,20 @@ function textoCopia() {
     } else if (tipoTampa == 'tampa3cm' && valorX) {
         descricaoMaterial += `Modelo encaixe com abas de 3cm `;
 
-    }else{
+    } else {
         descricaoMaterial += `Modelo encaixe com abas na medida total da altura`;
     }
-
-    if (quantidade > 1){
-        descricaoQuantidade = `
-R$ ${(valorTotalVenda).toFixed(2)} - ${quantidade} Unidades
-        `;
+    if (valorPers > 0) {
+        descricaoPersonalizacao = `Personalização: ${personalizacao} \n`;
+    }
+    if (quantidade > 1) {
+        descricaoQuantidade = `\nR$ ${(valorTotalVenda).toFixed(2)} - ${quantidade} Unidades\n`;
     }
 
     textoOrcamento = `
-Caixa em acrílico ${corInput.value + ' ' +espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
+Caixa em acrílico ${corInput.value + ' ' + espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
 OBS: ${descricaoMaterial}
-
+${descricaoPersonalizacao}
 R$ ${(valorVenda).toFixed(2)} - Unidade
 ${descricaoQuantidade}
 Tempo médio para ser produzido de 5 dias úteis.
