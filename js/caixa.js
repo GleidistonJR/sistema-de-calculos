@@ -49,11 +49,21 @@ inputs.forEach(input => {
     input.addEventListener("change", calcular);
 });
 
+let valorX 
+let valorY 
+let valorZ 
+
+let valorVenda
+let valorTotalVenda
+
+let tipoTampa
+let quantidade
+
 function calcular() {
 
-    const tipoTampa = window.document.querySelector('input[name="tipoTampa"]:checked').value
+    tipoTampa = window.document.querySelector('input[name="tipoTampa"]:checked').value
 
-    const quantidade = quantidadeInput.value
+    quantidade = quantidadeInput.value
 
     let corPorcento;
 
@@ -130,32 +140,32 @@ function calcular() {
     }
 
 
-    const valorX = Number(valX.value) / 100
-    const valorY = Number(valY.value) / 100
-    const valorZ = Number(valZ.value) / 100
+    valorX = Number(valX.value) / 100
+    valorY = Number(valY.value) / 100
+    valorZ = Number(valZ.value) / 100
 
     let metroQuadradoChapa
     let perimetroCorte
 
     if (tipoTampa == 'semTampa') {
-        /*este calculo e para Sem tampa*/ 
+        /*este calculo e para Sem tampa*/
         metroQuadradoChapa = ((valorX * valorY) * 1) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
         perimetroCorte = ((valorX * 6) + (valorY * 6) + (valorZ * 8)) * 100
     }
     else if (tipoTampa == 'tampaLacrada') {
 
-        /*este calculo e para caixa lacrada*/ 
+        /*este calculo e para caixa lacrada*/
         metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
         perimetroCorte = ((valorX * 8) + (valorY * 8) + (valorZ * 8)) * 100
 
-    } else if (tipoTampa == 'tampa3cm' && valorX ) {
-        /*este calculo e para caixa com tampa de 3cm                                                     Adiciona mais as abas latereais de 3cm*/ 
-        metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * 0.03) * 2) + ((valorY * 0.03) * 2)
+    } else if (tipoTampa == 'tampa3cm' && valorX) {
+        /*este calculo e para caixa com tampa de 3cm                                                     Adiciona mais as abas latereais de 3cm*/
+        metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) + ((valorX * 0.03) * 2) + ((valorY * 0.03) * 2)
         perimetroCorte = ((valorX * 12) + (valorY * 12) + (valorZ * 8) + (0.03 * 8)) * 100
 
     } else {
-        /*este calculo e para caixa com tampa total                                                     Adiciona mais as abas latereais totais*/ 
-        metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) +   ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
+        /*este calculo e para caixa com tampa total                                                     Adiciona mais as abas latereais totais*/
+        metroQuadradoChapa = ((valorX * valorY) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2) + ((valorX * valorZ) * 2) + ((valorY * valorZ) * 2)
         perimetroCorte = ((valorX * 12) + (valorY * 12) + (valorZ * 16)) * 100
     }
 
@@ -238,113 +248,56 @@ function calcular() {
 
     valorVendaPersText.innerHTML = (calcValorPers).toFixed(2)
 
-    valorFinalText.innerHTML = ((calcValorPers + calcVenda) * quantidade).toFixed(2)
-
-
-
-
-
-
-
-    /*---------------------------
-    TEXTO ORÇAMENTO
-    ---------------------------*/
-
-
-
-/* CHAPA*/
-    if (calcVenda) {
-        if (calcVenda && !calcValorPers) {
-            if (quantidade == 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
-(Apenas corte)
-
-R$ ${calcVenda.toFixed(2)} - Unidade
-
-Tempo médio para ser produzido de 2 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-
-            }
-            else if (quantidade > 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
-(Apenas corte)
-
-R$ ${calcVenda.toFixed(2)} - Unidade
-
-R$ ${(Number((calcVenda).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
-
-Tempo médio para ser produzido de 2 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-            }
-
-        } else if (calcVenda && calcValorPers) {
-            if (quantidade == 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
-Personalização: ${personalizacao}
-
-R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
-
-Tempo médio para ser produzido de 5 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-            }
-            else if (quantidade > 1) {
-                textoOrcamento = `
-Acrílico ${corInput.value} ${espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
-Personalização: ${personalizacao}
-
-R$ ${(calcVenda + calcValorPers).toFixed(2)} - Unidade
-
-R$ ${((Number(calcVenda + calcValorPers).toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
-
-Tempo médio para ser produzido de 5 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-            }
-        }
-
-
-    }
-    /* APENAS PERSONALIZAÇÂO*/
-    else if (calcValorPers) {
-
-        if (quantidade == 1) {
-            textoOrcamento = `
-    Personalização em ${personalizacao} medindo ${(valXPers * 100).toFixed(2)} x ${(valYPers * 100).toFixed(2)}
+    valorVenda = calcValorPers + calcVenda
+    valorTotalVenda = (calcValorPers + calcVenda) * quantidade
     
-R$ ${(calcValorPers).toFixed(2)} - Unidade
+    valorFinalText.innerHTML = (valorTotalVenda).toFixed(2)
 
-Tempo médio para ser produzido de 5 dias úteis.
-Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
-Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
-Retirar na loja, não estamos fazendo entrega.`
-        } else if (quantidade > 1) {
-            textoOrcamento = `
-Personalização em ${personalizacao} medindo ${(valXPers * 100).toFixed(2)} x ${(valYPers * 100).toFixed(2)}
+
+
+    textoCopia();
+
+}
+
+
+function textoCopia() {
+    let descricaoMaterial = ``;
+    let descricaoQuantidade = ``;
     
-R$ ${(calcValorPers).toFixed(2)} - Unidade
+    
+    if (tipoTampa == 'semTampa') {
+        descricaoMaterial += `Modelo sem tampa`;
+    }
+    else if (tipoTampa == 'tampaLacrada') {
+        descricaoMaterial += `Modelo tampa lacrada`;
 
-R$ ${(Number(calcValorPers.toFixed(2))* quantidade).toFixed(2)} - ${quantidade} Unidades
+    } else if (tipoTampa == 'tampa3cm' && valorX) {
+        descricaoMaterial += `Modelo encaixe com abas de 3cm `;
 
+    }else{
+        descricaoMaterial += `Modelo encaixe com abas na medida total da altura`;
+    }
+
+    if (quantidade > 1){
+        descricaoQuantidade = `
+R$ ${(valorTotalVenda).toFixed(2)} - ${quantidade} Unidades
+        `;
+    }
+
+    textoOrcamento = `
+Caixa em acrílico ${corInput.value + ' ' +espessuraInput.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP) centímetros
+OBS: ${descricaoMaterial}
+
+R$ ${(valorVenda).toFixed(2)} - Unidade
+${descricaoQuantidade}
 Tempo médio para ser produzido de 5 dias úteis.
 Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
 Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
-        }
-    }
+
 
     copiarOrcamento.dataset.texto = textoOrcamento
 }
-
 
 
 

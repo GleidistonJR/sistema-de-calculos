@@ -133,8 +133,16 @@ function monstrarValor(valorBase) {
 }
 
 function textoCopia() {
-    textoOrcamento = `
-Chapa de ${material.value} ${espessura.value}mm, medindo 2x1 metros
+let descricaoMaterial = ``;
+
+if (material.value === "acrilico") {
+  descricaoMaterial += ` ${espessura.value}mm ${cor.value}, medindo 2x1 metros`;
+}else{
+    descricaoMaterial += `, medindo 00x00 centímetros`;
+}
+
+textoOrcamento = `
+Chapa de ${material.value + descricaoMaterial}
 OBS: Chapa inteira (Com plastico e borrachas)
 
 R$ ${(valorVenda).toFixed(2)} - Unidade
