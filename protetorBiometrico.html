@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/output.css">
+    <title>Sistema de Calculos - Chapa</title>
+</head>
+
+<body class="bg-gray-200">
+
+    <div id="header"></div>
+
+
+    <h1 class="text-center text-3xl font-semibold pt-5 text-gray-600">Calculo de Protetor Biométrico</h1>
+
+    <main class="grid grid-cols-1 xl:grid-cols-2 xl:w-10/12 m-auto p-5 gap-5">
+        <section class="col-span-1">
+            <article class="bg-white p-4 rounded">
+
+
+            <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Material</h2>
+
+            <div class="mt-5">
+
+                <div class="grid grid-cols-4 items-center mb-2 acrilico">
+                    <label class="text-md font-medium ">Espessura</label>
+                    <select id="espessura" class="col-span-3 w-full p-2 border border-gray-400 rounded-md inputs">
+                        <option value="4">4mm</option>
+                        <option value="5">5mm</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-4 items-center mb-2 acrilico">
+                    <label class="text-md font-medium ">Cor</label>
+                    <select id="cor" class="col-span-3 w-full p-2 border border-gray-400 rounded-md inputs">
+                        <option value="preto">Preto</option>
+                        <option value="branco">Branco</option>
+                        <option value="cristal">Cristal</option>
+
+                    </select>
+                </div>
+
+                <div class="mt-5 mb-2 grid grid-cols-4 items-center">
+                    <label for="valX" class="text-md font-medium">Largura (cm)</label>
+                    <input id="valX" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="15">
+                </div>
+
+                <div class="mb-2 grid grid-cols-4 items-center">
+                    <label for="valY" class="text-md font-medium">Altura (cm)</label>
+                    <input id="valY" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="20">
+                </div>
+
+                <div class="mb-2 grid grid-cols-4 items-center">
+                    <label for="valZ" class="text-md font-medium">Profundidade (cm)</label>
+                    <input id="valZ" class="col-span-3 border border-gray-400 p-1 rounded-md text-center inputs"
+                        type="number" placeholder="15">
+                </div>
+
+
+                <h3 class="mt-5 text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">
+                    Adicionais</h3>
+
+                <div class="text-start p-5 gap-3 flex flex-col text-xl text-gray-600 font-semibold ">
+                    <label>
+                        <input class=" dependente" type="checkbox" name="protetorSol" checked>
+                        Protetor Sol/Chuva
+                    </label>
+                    <label>
+                        <input class=" dependente" type="checkbox" name="fundoFalso" checked>
+                        Fundo falso
+                    </label>
+                    <label>
+                        <input class=" dependente" type="checkbox" name="embutido">
+                        Embutido
+                    </label>
+                    <label>
+                        <input class=" dependente" type="checkbox" name="cantosDobrados">
+                        Cantos dobrados
+                    </label>
+
+
+                </div>
+            </div>
+            </article>
+        </section>
+
+        <section class="col-span-1">
+            <article class="bg-white p-4 rounded">
+
+
+                <div class="text-center bg-white">
+                    <h2 class="text-2xl p-2 font-bold text-gray-600 border-b border-gray-300">Ajustes</h2>
+                    <div class="w-3/4 mt-5 mb-2 grid grid-cols-4 items-center">
+                        <label for="porcentagem"
+                            class="col-span-4 xl:col-span-2 text-xl font-medium text-gray-600">Percentual (%)</label>
+                        <input id="porcentagem"
+                            class="col-span-4 col-start-2 xl:col-span-2 border border-gray-400 p-1 rounded-md text-center inputs"
+                            type="number" value="150">
+                    </div>
+                </div>
+
+                <div class="my-16 p-2 text-center">
+                    <p class="text-6xl"><span class="text-green-600 font-semibold">R$<span
+                                id="valorFinal">0.00</span></span> </p>
+                    <br>
+                    <button id="copiarOrcamento" class="btn-copiar border px-16 py-3 bg-green-600 text-2xl text-white font-semibold rounded-md
+                hover:bg-green-500 hover:cursor-pointer" data-texto="R$00,00">Copiar Orçamento</button>
+
+                </div>
+            </article>
+        </section>
+
+
+
+
+    </main>
+
+    <div id="textCopia"></div>
+
+    <script type="module" src="js/protetorBiometrico.js"></script>
+</body>
+
+</html>
