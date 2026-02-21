@@ -23,22 +23,26 @@ const embutido = document.querySelector('[name="embutido"]')
 const cantosDobrados = document.querySelector('[name="cantosDobrados"]')
 
 const porcentagemInp = document.getElementById('porcentagem')
+const quantidadeInput = window.document.getElementById("quantidade")
 const valorFinalText = document.getElementById('valorFinal')
 const btnCopiarOrcamento = window.document.getElementById("copiarOrcamento")
 
 let textoOrcamento = ''
-let valorVendaFinal = 0
+let valorVenda = 0
+let valorTotalVenda = 0
 
 let valorX
 let valorY
 let valorZ
 
 
-protetorSol.addEventListener("change", () =>  desmarcar(cantosDobrados))
-cantosDobrados.addEventListener("change", () =>  desmarcar(protetorSol))
-fundofalso.addEventListener("change", () =>  desmarcar(embutido))
+let quantidade
 
-embutido.addEventListener("change", () =>  marcar(fundofalso))
+protetorSol.addEventListener("change", () => desmarcar(cantosDobrados))
+cantosDobrados.addEventListener("change", () => desmarcar(protetorSol))
+fundofalso.addEventListener("change", () => desmarcar(embutido))
+
+embutido.addEventListener("change", () => marcar(fundofalso))
 
 function desmarcar(desmarcar) {
     desmarcar.checked = false
@@ -60,6 +64,8 @@ inputs.forEach(input => {
 
 
 function calcularAcrilico() {
+    quantidade = quantidadeInput.value
+
     let valor
     switch (espessura.value) {
         case '4':
@@ -120,22 +126,48 @@ function monstrarValor(valorBase) {
     /*Acrescenta a porcentagem*/
     const porcentagem = (porcentagemInp.value / 100) + 1
 
-    valorVendaFinal = (valorMaterialArea * porcentagem) + valorAdicional
-    valorFinalText.innerHTML = (valorVendaFinal).toFixed(2)
+    valorVenda = (valorMaterialArea * porcentagem) + valorAdicional
+    valorTotalVenda = valorVenda * quantidade
+    
+    valorFinalText.innerHTML = (valorTotalVenda).toFixed(2)
 
     textoCopia()
 }
 
 function textoCopia() {
-    let observacao = ``
+    let observacoes = []
+    let descricaoQuantidade = ``;
+
+    if (protetorSol.checked) {
+        observacoes.push("Protetor Solar/Chuva")
+    }
+
+    if (fundofalso.checked) {
+        observacoes.push("Fundo falso")
+    }
+
+    if (embutido.checked) {
+        observacoes.push("Modelo embutido")
+    }
+
+    if (cantosDobrados.checked) {
+        observacoes.push("Cantos dobrados")
+    }
+
+    let observacao = observacoes.join(" | ")
+
+    if (quantidade > 1) {
+        descricaoQuantidade = `\nR$ ${(valorTotalVenda).toFixed(2)} - ${quantidade} Unidades\n`;
+    }
 
     textoOrcamento = `
 Protetor biométrico em acrilico ${cor.value} ${espessura.value}mm, medindo ${(valorX * 100).toFixed(2)} x ${(valorY * 100).toFixed(2)} x ${(valorZ * 100).toFixed(2)} (LxAxP)
-OBS: ${observacao}
+Incluso: ${observacao}
 
-R$ ${(valorVendaFinal).toFixed(2)} - Unidade
-
-Temos a pronta entrega
+R$ ${(valorVenda).toFixed(2)} - Unidade
+${descricaoQuantidade}
+Tempo médio para ser produzido de 5 dias úteis.
+Para início da produção é solicitado 50% do valor antecipado e o restante no ato da retirada.
 Forma de pagamento: Dinheiro, PIX ou cartão de crédito em 2x, e débito
 Retirar na loja, não estamos fazendo entrega.`
 

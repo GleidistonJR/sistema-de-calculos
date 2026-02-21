@@ -22,7 +22,7 @@ return `
     <a href="index.html" class="hover:underline px-5">M2</a>
     <a href="chapa.html" class="hover:underline px-5">Chapa</a>
     <a href="caixa.html" class="hover:underline px-5">Caixa</a>
-    <a href="protetorBiometrico.html" class="hover:underline px-5">Protetor Biométrico</a>
+    <a href="protetorBiometrico.html" class="hover:underline px-5">Protetor</a>
   </nav>
 </header>
 `;
